@@ -74,8 +74,8 @@ public partial class AppDbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("randevu_hizmetid_fkey");
 
-            entity.HasOne(d => d.Çalışan).WithMany(p => p.Randevu)
-                .HasForeignKey(d => d.Çalışanid)
+            entity.HasOne(d => d.Calisan).WithMany(p => p.Randevu)
+                .HasForeignKey(d => d.Calisanid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("randevu_Çalışanid_fkey");
         });
@@ -101,7 +101,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Calisan>(entity =>
         {
-            entity.HasKey(e => e.Çalışanid).HasName("Çalışan_pkey");
+            entity.HasKey(e => e.Calisanid).HasName("Çalışan_pkey");
 
             entity.ToTable("Çalışan");
 

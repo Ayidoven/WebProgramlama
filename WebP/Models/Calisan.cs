@@ -5,7 +5,7 @@ namespace WebP.Models;
 
 public partial class Calisan
 {
-    public int Çalışanid { get; set; }
+    public int Calisanid { get; set; }
 
     public int salonid { get; set; }
 

@@ -22,7 +22,7 @@ namespace WebP.Controllers
         public async Task<ActionResult<IEnumerable<Randevu>>> GetRandevular()
         {
             return await _context.Randevu
-                                 .Include(r => r.Çalışan)
+                                 .Include(r => r.Calisan)
                                  .Include(r => r.Hizmet)
                                  .ToListAsync();
         }
@@ -32,7 +32,7 @@ namespace WebP.Controllers
         public async Task<ActionResult<Randevu>> GetRandevu(int id)
         {
             var randevu = await _context.Randevu
-                                        .Include(r => r.Çalışan)
+                                        .Include(r => r.Calisan)
                                         .Include(r => r.Hizmet)
                                         .FirstOrDefaultAsync(r => r.Randevuid == id);
 

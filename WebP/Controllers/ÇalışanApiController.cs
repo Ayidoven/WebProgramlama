@@ -51,7 +51,7 @@ namespace WebP.Controllers
             }
 
             var çalışan = await _context.Çalışan
-                .FirstOrDefaultAsync(m => m.Çalışanid == id); 
+                .FirstOrDefaultAsync(m => m.Calisanid == id); 
             if (çalışan == null)
             {
                 return NotFound(); 
@@ -92,7 +92,7 @@ namespace WebP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ÇalışanId,AdSoyad,UzmanlıkAlanı,UygunlukSaatleri")] Calisan çalışan)
         {
-            if (id != çalışan.Çalışanid)
+            if (id != çalışan.Calisanid)
             {
                 return NotFound();  // ID uyumsuzsa hata döndür
             }
@@ -106,7 +106,7 @@ namespace WebP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ÇalışanExists(çalışan.Çalışanid))  // Çalışan yoksa hata döndür
+                    if (!ÇalışanExists(çalışan.Calisanid))  // Çalışan yoksa hata döndür
                     {
                         return NotFound();
                     }
@@ -122,7 +122,7 @@ namespace WebP.Controllers
 
         private bool ÇalışanExists(int id)
         {
-            return _context.Çalışan.Any(e => e.Çalışanid == id);  // Çalışan var mı kontrol et
+            return _context.Çalışan.Any(e => e.Calisanid == id);  // Çalışan var mı kontrol et
         }
     }
 }

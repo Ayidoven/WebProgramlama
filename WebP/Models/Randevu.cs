@@ -7,7 +7,7 @@ public partial class Randevu
 {
     public int Randevuid { get; set; }
 
-    public int Çalışanid { get; set; }
+    public int Calisanid { get; set; }
 
     public int Hizmetid { get; set; }
 
@@ -19,5 +19,5 @@ public partial class Randevu
 
     public virtual Hizmet Hizmet { get; set; } = null!;
 
-    public virtual Calisan Çalışan { get; set; } = null!;
+    public virtual Calisan Calisan { get; set; } = null!;
 }
