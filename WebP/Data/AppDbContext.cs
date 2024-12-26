@@ -22,7 +22,7 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Salon> Salon { get; set; }
 
-    public virtual DbSet<Çalışan> Çalışan { get; set; }
+    public virtual DbSet<Calisan> Çalışan { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=Bk20032511");
@@ -99,7 +99,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.çalışmasaatleri).HasMaxLength(50);
         });
 
-        modelBuilder.Entity<Çalışan>(entity =>
+        modelBuilder.Entity<Calisan>(entity =>
         {
             entity.HasKey(e => e.Çalışanid).HasName("Çalışan_pkey");
 
@@ -116,7 +116,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("uzmanlıkalanı");
 
-            entity.HasOne(d => d.Salon).WithMany(p => p.Çalışan)
+            entity.HasOne(d => d.Salon).WithMany(p => p.Calisan)
                 .HasForeignKey(d => d.salonid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Çalışan_salonid_fkey");

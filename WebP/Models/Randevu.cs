@@ -19,5 +19,5 @@ public partial class Randevu
 
     public virtual Hizmet Hizmet { get; set; } = null!;
 
-    public virtual Çalışan Çalışan { get; set; } = null!;
+    public virtual Calisan Çalışan { get; set; } = null!;
 }

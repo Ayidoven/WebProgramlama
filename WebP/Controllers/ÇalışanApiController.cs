@@ -31,7 +31,7 @@ namespace WebP.Controllers
         // POST: Çalışan Ekleme
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id","AdSoyad,UzmanlıkAlanı,UygunlukSaatleri")] Çalışan çalışan)
+        public async Task<IActionResult> Create([Bind("Id","AdSoyad,UzmanlıkAlanı,UygunlukSaatleri")] Calisan çalışan)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace WebP.Controllers
         // POST: Çalışan Güncelleme
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ÇalışanId,AdSoyad,UzmanlıkAlanı,UygunlukSaatleri")] Çalışan çalışan)
+        public async Task<IActionResult> Edit(int id, [Bind("ÇalışanId,AdSoyad,UzmanlıkAlanı,UygunlukSaatleri")] Calisan çalışan)
         {
             if (id != çalışan.Çalışanid)
             {

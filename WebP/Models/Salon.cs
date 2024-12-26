@@ -17,5 +17,5 @@ public partial class Salon
 
     public virtual ICollection<Hizmet> Hizmet { get; set; } = new List<Hizmet>();
 
-    public virtual ICollection<Çalışan> Çalışan { get; set; } = new List<Çalışan>();
+    public virtual ICollection<Calisan> Calisan { get; set; } = new List<Calisan>();
 }
