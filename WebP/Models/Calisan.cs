@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WebP.Models;
 
-public partial class Çalışan
+public partial class Calisan
 {
     public int Çalışanid { get; set; }
 
