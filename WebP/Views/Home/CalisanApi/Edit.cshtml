@@ -1,0 +1,23 @@
+﻿@model WebP.Models.Calisan
+
+@{
+    ViewData["Title"] = "Çalışan Güncelle";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="adsoyad">Ad Soyad</label>
+        <input type="text" class="form-control" id="adSoyad" name="adSoyad" value="@Model.adsoyad" required />
+    </div>
+    <div class="form-group">
+        <label for="uzmanlikalani">Uzmanlık Alanı</label>
+        <input type="text" class="form-control" id="uzmanlikalanı" name="uzmanlikalanı" value="@Model.uzmanlıkalanı" required />
+    </div>
+    <div class="form-group">
+        <label for="uygunluksaatleri">Uygunluk Saatleri</label>
+        <input type="text" class="form-control" id="uygunluksaatleri" name="uygunluksaatleri" value="@Model.uygunluksaatleri" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>

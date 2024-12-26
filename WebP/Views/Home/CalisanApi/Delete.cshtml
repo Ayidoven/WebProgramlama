@@ -1,4 +1,4 @@
-﻿@model WebP.Models.Çalışan
+﻿@model WebP.Models.Calisan
 
 @{
     ViewData["Title"] = "Çalışan Sil";
@@ -8,9 +8,9 @@
 
 <p>Bu çalışanı silmek istediğinizden emin misiniz?</p>
 
-<h4>Çalışan: @Model.adsoyad</h4>
+<h4>Calisan: @Model.adsoyad</h4>
 
 <form method="post">
     <button type="submit" class="btn btn-danger">Sil</button>
-    <a href="@Url.Action("Çalışan", "ÇalışanApi")" class="btn btn-secondary">İptal</a>
+    <a href="@Url.Action("Calisan", "CalisanApi")" class="btn btn-secondary">İptal</a>
 </form>
