@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Web_Programlama.Models;
+using WebP.Models;
 
-namespace Web_Programlama.Controllers
+namespace WebP.Controllers
 {
     public class HomeController : Controller
     {

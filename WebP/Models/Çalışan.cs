@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Web_Programlama.Models;
+namespace WebP.Models;
 
 public partial class Çalışan
 {

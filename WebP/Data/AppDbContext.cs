@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Web_Programlama.Models;
+using WebP.Models;
 
-namespace Web_Programlama.Data;
+namespace WebP.Data;
 
 public partial class AppDbContext : DbContext
 {

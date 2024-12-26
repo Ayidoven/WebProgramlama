@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Web_Programlama.Data;
-using Web_Programlama.Models;
+using WebP.Data;
+using WebP.Models;
 
-namespace Web_Programlama.Controllers
+namespace WebP.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
