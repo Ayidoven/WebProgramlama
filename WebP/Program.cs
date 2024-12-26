@@ -1,4 +1,4 @@
-using Web_Programlama.Data;
+using WebP.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
