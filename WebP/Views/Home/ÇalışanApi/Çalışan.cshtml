@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Web_Programlama.Models.Çalışan>
+
+@{
+    ViewData["Title"] = "Çalışanlar";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a href="@Url.Action("Create", "ÇalışanApi")" class="btn btn-primary">Yeni Çalışan Ekle</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ad Soyad</th>
+            <th>Uzmanlık Alanı</th>
+            <th>Uygunluk Saatleri</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var çalışan in Model)
+        {
+            <tr>
+                <td>@çalışan.Çalışanid</td>
+                <td>@çalışan.adsoyad</td>
+                <td>@çalışan.uzmanlıkalanı</td>
+                <td>@çalışan.uygunluksaatleri</td>
+                <td>
+                    <a href="@Url.Action("Edit", "ÇalışanApi", new { id = çalışan.Çalışanid })" class="btn btn-warning">Güncelle</a>
+                    <a href="@Url.Action("Delete", "ÇalışanApi", new { id = çalışan.Çalışanid })" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

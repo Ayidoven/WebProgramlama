@@ -1,0 +1,27 @@
+﻿@model Web_Programlama.Models.Çalışan
+
+@{
+    ViewData["Title"] = "Çalışan Ekle";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="id">ID</label>
+        <input type="number" class="form-control" id="id" name="ID" required />
+    </div>
+    <div class="form-group">
+        <label for="adSoyad">Ad Soyad</label>
+        <input type="text" class="form-control" id="adSoyad" name="AdSoyad" required />
+    </div>
+    <div class="form-group">
+        <label for="uzmanlikAlani">Uzmanlık Alanı</label>
+        <input type="text" class="form-control" id="uzmanlikAlani" name="UzmanlikAlani" required />
+    </div>
+    <div class="form-group">
+        <label for="uygunlukSaatleri">Uygunluk Saatleri</label>
+        <input type="datetime" class="form-control" id="uygunlukSaatleri" name="UygunlukSaatleri" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Çalışan Ekle</button>
+</form>

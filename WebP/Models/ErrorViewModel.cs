@@ -1,4 +1,4 @@
-namespace WebP.Models
+namespace Web_Programlama.Models
 {
     public class ErrorViewModel
     {

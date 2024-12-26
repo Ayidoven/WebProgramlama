@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WebP.Models;
+using Web_Programlama.Models;
 
-namespace WebP.Controllers
+namespace Web_Programlama.Controllers
 {
     public class HomeController : Controller
     {
@@ -19,6 +19,10 @@ namespace WebP.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult Çalýþan()
         {
             return View();
         }
