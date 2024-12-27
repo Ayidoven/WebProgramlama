@@ -29,6 +29,13 @@ app.UseAuthorization();  // Yetkilendirme middleware'ý
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+builder.Logging.AddConsole();
+
+app.MapControllerRoute(
+    name: "calisanApi",
+    pattern: "CalisanApi/{action=Calisan}/{id?}");
+builder.Logging.AddConsole();
+
 
 // Uygulamanýn çalýþmasý
 app.Run();

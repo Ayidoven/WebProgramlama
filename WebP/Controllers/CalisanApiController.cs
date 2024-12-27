@@ -5,7 +5,7 @@ using WebP.Models;
 
 namespace WebP.Controllers
 {
-    // "Home/Index" gibi sayfalarda yönlendirme yapılacak bir controller
+    [Route("CalisanApi/[action]/{id?}")]
     public class CalisanApiController : Controller
     {
         private readonly AppDbContext _context;
@@ -31,15 +31,26 @@ namespace WebP.Controllers
         // POST: Çalışan Ekleme
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Calisanid,AdSoyad,UzmanlikAlani,UygunlukSaatleri")] Calisan calisan)
+        public async Task<IActionResult> Create([Bind("adsoyad,uzmanlıkalanı,uygunluksaatleri")] Calisan calisan)
         {
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);  // Konsola yazdırabilirsiniz
+                }
+                return View("~/Views/Home/CalisanApi/Create.cshtml", calisan);
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(calisan); // Çalışan objesini veritabanına ekle
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Calisan));  // Ekleme işleminden sonra listeye yönlendir
+                return RedirectToAction("Calisan");  // Listeleme sayfasına yönlendirme
+                                                     // Ekleme işleminden sonra listeye yönlendir
             }
             return View("~/Views/Home/CalisanApi/Create.cshtml", calisan);
+
         }
 
         // GET: Çalışan Silme
@@ -87,7 +98,6 @@ namespace WebP.Controllers
             return View("~/Views/Home/CalisanApi/Edit.cshtml", calisan);  // Çalışanın bilgilerini güncelleme formuna gönder
         }
 
-        // POST: Çalışan Güncelleme
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Calisanid,AdSoyad,UzmanlikAlani,UygunlukSaatleri")] Calisan calisan)
@@ -115,14 +125,15 @@ namespace WebP.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Calisan));  // Güncelleme işleminden sonra listeye yönlendir
+                return RedirectToAction(nameof(Calisan));  // Listeleme sayfasına yönlendir
             }
-            return View("~/Views/Home/CalisanApi/Edit.cshtml", calisan);  // Formda hata varsa tekrar formu render et
+            return View(calisan);  // Eğer hata varsa formu tekrar render et
         }
 
-        private bool CalisanExists(int id)
+        private bool CalisanExists(int calisanid)
         {
-            return _context.Calisan.Any(e => e.Calisanid == id);  // Çalışan var mı kontrol et
+            throw new NotImplementedException();
         }
+
     }
 }
