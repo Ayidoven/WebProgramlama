@@ -4,35 +4,99 @@
     ViewData["Title"] = "Çalışanlar";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<p>
-    <a href="@Url.Action("Create", "CalisanApi")" class="btn btn-primary">Yeni Çalışan Ekle</a>
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Ad Soyad</th>
-            <th>Uzmanlık Alanı</th>
-            <th>Uygunluk Saatleri</th>
-            <th>İşlemler</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var calisan in Model)
-        {
-            <tr>
-                <td>@calisan.Calisanid</td>
-                <td>@calisan.adsoyad</td>
-                <td>@calisan.uzmanlıkalanı</td>
-                <td>@calisan.uygunluksaatleri</td>
-                <td>
-                    <a href="@Url.Action("Edit", "CalisanApi", new { id = calisan.Calisanid })" class="btn btn-warning">Güncelle</a>
-                    <a href="@Url.Action("Delete", "CalisanApi", new { id = calisan.Calisanid })" class="btn btn-danger">Sil</a>
-                </td>
-            </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 20px;
         }
-    </tbody>
-</table>
+
+        .btn {
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #444;
+        }
+
+            .table th, .table td {
+                border: 1px solid #555;
+                padding: 10px;
+                text-align: left;
+            }
+
+            .table th {
+                background-color: #555;
+            }
+
+            .table tr:nth-child(even) {
+                background-color: #666;
+            }
+
+            .table tr:hover {
+                background-color: #777;
+            }
+    </style>
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
+
+    <p>
+        <a href="@Url.Action("Create", "CalisanApi")" class="btn btn-primary">Yeni Çalışan Ekle</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ad Soyad</th>
+                <th>Uzmanlık Alanı</th>
+                <th>Uygunluk Saatleri</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var calisan in Model)
+            {
+                <tr>
+                    <td>@calisan.Calisanid</td>
+                    <td>@calisan.adsoyad</td>
+                    <td>@calisan.uzmanlıkalanı</td>
+                    <td>@calisan.uygunluksaatleri</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "CalisanApi", new { id = calisan.Calisanid })" class="btn btn-warning">Güncelle</a>
+                        <a href="@Url.Action("Delete", "CalisanApi", new { id = calisan.Calisanid })" class="btn btn-danger">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

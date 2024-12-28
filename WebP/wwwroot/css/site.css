@@ -1,9 +1,9 @@
 /* styles.css */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+    background-image: url('/images/L_height.jpg'); /* Resmin yolunu belirtin */
+    background-size: cover; /* Resmi tüm sayfayý kaplayacak þekilde ölçeklendirin */
+    background-repeat: no-repeat; /* Resmin tekrarlamasýný önleyin */
+    background-position: center center; /* Resmi ortalayýn */
 }
 
 .container {

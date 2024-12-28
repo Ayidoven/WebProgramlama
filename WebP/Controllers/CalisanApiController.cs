@@ -7,7 +7,8 @@ using WebP.Models;
 namespace WebP.Controllers
 {
 
-    [Route("CalisanApi/[action]/{id?}")]
+    [Route("Home/CalisanApi/[action]/{id?}")]
+
     public class CalisanApiController : Controller
     {
         private readonly AppDbContext _context;
@@ -158,7 +159,7 @@ namespace WebP.Controllers
                 }
                 return RedirectToAction(nameof(Calisan));  // Listeleme sayfasına yönlendir
             }
-            return View(calisan);
+            return View("~/Views/Home/CalisanApi/Edit.cshtml", calisan);
         }
 
         private bool CalisanExists(int calisanid)

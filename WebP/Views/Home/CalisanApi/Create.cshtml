@@ -4,29 +4,29 @@
     ViewData["Title"] = "Çalışan Ekle";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 style="color: white;">@ViewData["Title"]</h1>
 
 <form asp-action="Create" method="post">
     <div class="form-group">
-        <label asp-for="adsoyad" class="control-label"></label>
+        <label asp-for="adsoyad" class="control-label" style="color: white;"></label>
         <input asp-for="adsoyad" class="form-control" />
         <span asp-validation-for="adsoyad" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="salonid" class="control-label">Salon</label>
+        <label asp-for="salonid" class="control-label" style="color: white;">Salon</label>
         <select asp-for="salonid" class="form-control" asp-items="ViewBag.Salons"></select>
         <span asp-validation-for="salonid" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="uygunluksaatleri" class="control-label"></label>
+        <label asp-for="uygunluksaatleri" class="control-label" style="color: white;"></label>
         <input asp-for="uygunluksaatleri" class="form-control" />
         <span asp-validation-for="uygunluksaatleri" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="uzmanlıkalanı" class="control-label"></label>
+        <label asp-for="uzmanlıkalanı" class="control-label" style="color: white;"></label>
         <input asp-for="uzmanlıkalanı" class="form-control" />
         <span asp-validation-for="uzmanlıkalanı" class="text-danger"></span>
     </div>
