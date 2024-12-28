@@ -13,7 +13,7 @@ public partial class Randevu
 
     public DateTime Tarih { get; set; }
 
-    public string? Kullanıcıadı { get; set; }
+    public string? Kullaniciadi { get; set; }
 
     public string? Durum { get; set; }
 

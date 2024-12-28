@@ -98,21 +98,7 @@ namespace WebP.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Kullanıcı",
-                columns: table => new
-                {
-                    KullanıcıId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AdSoyad = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Sifre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Kullanıcı", x => x.KullanıcıId);
-                });
-        }
+                    }
            
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -129,8 +115,7 @@ namespace WebP.Migrations
             migrationBuilder.DropTable(
                 name: "Hizmet");
 
-            migrationBuilder.DropTable(
-                name: "Kullanıcı");
+            
         }
     }
 }

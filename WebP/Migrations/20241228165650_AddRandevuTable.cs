@@ -11,16 +11,16 @@ namespace WebP.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
            migrationBuilder.CreateTable(
-             name: "Kullanıcı",
+             name: "Kullanici",
              columns: table => new
              {
-                 Kullanıcıid = table.Column<int>(nullable: false)
+                 Kullaniciid = table.Column<int>(nullable: false)
                       .Annotation("Npgsql:Serial", "true"),
                  // Diğer sütunlar
              },
               constraints: table =>
              {
-              table.PrimaryKey("PK_Kullanıcı", x => x.Kullanıcıid);
+              table.PrimaryKey("PK_Kullanici", x => x.Kullaniciid);
              });
              
         }

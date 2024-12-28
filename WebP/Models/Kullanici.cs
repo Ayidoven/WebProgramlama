@@ -2,10 +2,10 @@
 
 namespace WebP.Models
 {
-    public class Kullanıcı
+    public class Kullanici
     {
         [Key]
-        public int KullanıcıId { get; set; }
+        public int Kullaniciid { get; set; }
 
         [Required(ErrorMessage = "Ad Soyad gerekli.")]
         [StringLength(100)]

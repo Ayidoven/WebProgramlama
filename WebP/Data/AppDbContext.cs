@@ -15,7 +15,7 @@ public partial class AppDbContext : DbContext
         : base(options)
     {
     }
-    public virtual DbSet<Kullanıcı> Kullanıcı { get; set; }
+    public virtual DbSet<Kullanici> Kullanici { get; set; }
     public virtual DbSet<Hizmet> Hizmet { get; set; }
 
     public virtual DbSet<Randevu> Randevu { get; set; }
@@ -62,7 +62,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("durum");
             entity.Property(e => e.Hizmetid).HasColumnName("hizmetid");
-            entity.Property(e => e.Kullanıcıadı)
+            entity.Property(e => e.Kullaniciadi)
                 .HasMaxLength(100)
                 .HasColumnName("kullanıcıadı");
             entity.Property(e => e.Tarih)
@@ -120,6 +120,32 @@ public partial class AppDbContext : DbContext
                 .HasForeignKey(d => d.salonid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("calisan_salonid_fkey");  // "Çalışan" -> "Calisan"
+        });
+
+        modelBuilder.Entity<Kullanici>(entity =>
+        {
+            entity.HasKey(e => e.Kullaniciid).HasName("kullanıcı_pkey");
+
+            entity.ToTable("kullanici");
+
+            entity.Property(e => e.Kullaniciid).HasColumnName("kullaniciid");
+
+            entity.Property(e => e.AdSoyad)
+                .IsRequired()
+                .HasMaxLength(100)
+                .HasColumnName("adsoyad");
+
+            entity.Property(e => e.Email)
+                .IsRequired()
+                .HasMaxLength(100)
+                .HasColumnName("email");
+
+            entity.Property(e => e.Sifre)
+                .IsRequired()
+                .HasMaxLength(100)
+                .HasColumnName("sifre");
+
+            
         });
 
         OnModelCreatingPartial(modelBuilder);

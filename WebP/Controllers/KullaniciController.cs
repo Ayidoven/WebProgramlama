@@ -5,11 +5,11 @@ using WebP.Models;
 
 namespace WebP.Controllers
 {
-    public class KullanıcıController : Controller
+    public class KullaniciController : Controller
     {
         private readonly AppDbContext _context;
 
-        public KullanıcıController(AppDbContext context)
+        public KullaniciController(AppDbContext context)
         {
             _context = context;
         }
@@ -23,16 +23,16 @@ namespace WebP.Controllers
         // POST: Kullanıcı Kayıt İşlemi
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Kayıt([Bind("AdSoyad,Email,Sifre")] Kullanıcı kullanıcı)
+        public IActionResult Kayıt([Bind("AdSoyad,Email,Sifre")] Kullanici kullanici)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(kullanıcı); // Kullanıcı verisini veritabanına ekle
+                _context.Add(kullanici); // Kullanıcı verisini veritabanına ekle
                 _context.SaveChanges(); // Değişiklikleri kaydet
                 return RedirectToAction("Başarılı"); // Başarı sayfasına yönlendir
             }
 
-            return View(kullanıcı); // Formda hata varsa tekrar formu göster
+            return View(kullanici); // Formda hata varsa tekrar formu göster
         }
 
         // Kayıt Başarılı Sayfası
