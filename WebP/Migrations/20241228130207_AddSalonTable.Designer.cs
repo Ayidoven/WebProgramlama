@@ -12,8 +12,8 @@ using WebP.Data;
 namespace WebP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241227184734_AddCalisanTable")]
-    partial class AddCalisanTable
+    [Migration("20241228130207_AddSalonTable")]
+    partial class AddSalonTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -189,7 +189,7 @@ namespace WebP.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("telefon");
 
-                    b.Property<string>("çalışmasaatleri")
+                    b.Property<string>("Çalışmasaatleri")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
@@ -212,13 +212,13 @@ namespace WebP.Migrations
 
             modelBuilder.Entity("WebP.Models.Hizmet", b =>
                 {
-                    b.HasOne("WebP.Models.Salon", "Salon")
+                    b.HasOne("WebP.Models.Salon", "salon")
                         .WithMany("Hizmet")
                         .HasForeignKey("Salonid")
                         .IsRequired()
                         .HasConstraintName("hizmet_salonid_fkey");
 
-                    b.Navigation("Salon");
+                    b.Navigation("salon");
                 });
 
             modelBuilder.Entity("WebP.Models.Randevu", b =>

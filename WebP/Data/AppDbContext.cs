@@ -96,7 +96,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.telefon)
                 .HasMaxLength(20)
                 .HasColumnName("telefon");
-            entity.Property(e => e.çalışmasaatleri).HasMaxLength(50);
+            entity.Property(e => e.Çalışmasaatleri).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Calisan>(entity =>

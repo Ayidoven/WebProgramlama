@@ -5,7 +5,7 @@
 namespace WebP.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateCalisanModel : Migration
+    public partial class AddSalonTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebP.Data;
 using WebP.Models;
@@ -18,39 +19,42 @@ namespace WebP.Controllers
         // GET: Çalışanlar (Listeleme)
         public async Task<IActionResult> Calisan()
         {
-            var calisan = await _context.Calisan.ToListAsync();
-            return View("~/Views/Home/CalisanApi/Calisan.cshtml", calisan);  // View'da çalışanları listeleyeceğiz
+            var calisanlar = await _context.Calisan
+                .Include(c => c.Salon)  // Salon bilgisini de dahil ediyoruz
+                .ToListAsync();
+            return View("~/Views/Home/CalisanApi/Calisan.cshtml", calisanlar);  // View'da çalışanları listeleyeceğiz
         }
 
         // GET: Çalışan Ekleme
         public IActionResult Create()
         {
-            return View("~/Views/Home/CalisanApi/Create.cshtml");  // Create.cshtml sayfasını döndür
+            ViewBag.Salons = new SelectList(_context.Salon, "salonid", "salonadı"); // Dropdown için salon listesi
+            return View("~/Views/Home/CalisanApi/Create.cshtml");
         }
 
         // POST: Çalışan Ekleme
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("adsoyad,uzmanlıkalanı,uygunluksaatleri")] Calisan calisan)
+        public async Task<IActionResult> Create([Bind("salonid,adsoyad,uzmanlıkalanı,uygunluksaatleri")] Calisan calisan)
         {
-            if (!ModelState.IsValid)
-            {
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine(error.ErrorMessage);  // Konsola yazdırabilirsiniz
-                }
-                return View("~/Views/Home/CalisanApi/Create.cshtml", calisan);
-            }
-
             if (ModelState.IsValid)
             {
-                _context.Add(calisan); // Çalışan objesini veritabanına ekle
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Calisan");  // Listeleme sayfasına yönlendirme
-                                                     // Ekleme işleminden sonra listeye yönlendir
-            }
-            return View("~/Views/Home/CalisanApi/Create.cshtml", calisan);
+                var yeniCalisan = new Calisan
+                {
+                    adsoyad = calisan.adsoyad,
+                    salonid = calisan.salonid,
+                    uzmanlıkalanı = calisan.uzmanlıkalanı,
+                    uygunluksaatleri = calisan.uygunluksaatleri
+                };
 
+                _context.Calisan.Add(yeniCalisan);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Calisan");
+            }
+
+            ViewBag.salonlar = new SelectList(_context.Salon, "salonid", "salonadı", calisan.salonid);
+            return View("~/Views/Home/CalisanApi/Create.cshtml", calisan);
         }
 
         // GET: Çalışan Silme
@@ -62,6 +66,7 @@ namespace WebP.Controllers
             }
 
             var calisan = await _context.Calisan
+                .Include(c => c.Salon)  // Salon bilgisini dahil et
                 .FirstOrDefaultAsync(m => m.Calisanid == id);
             if (calisan == null)
             {
@@ -87,24 +92,28 @@ namespace WebP.Controllers
         {
             if (id == null)
             {
-                return NotFound();  // Eğer ID yoksa hata döndür
+                return NotFound();
             }
 
-            var calisan = await _context.Calisan.FindAsync(id);
+            var calisan = await _context.Calisan
+                .Include(c => c.Salon)  // Salon bilgisini dahil et
+                .FirstOrDefaultAsync(m => m.Calisanid == id);
             if (calisan == null)
             {
-                return NotFound();  // Çalışan bulunamazsa hata döndür
+                return NotFound();
             }
-            return View("~/Views/Home/CalisanApi/Edit.cshtml", calisan);  // Çalışanın bilgilerini güncelleme formuna gönder
+
+            ViewBag.Salons = new SelectList(_context.Salon, "salonid", "salonadı", calisan.salonid);  // Salon seçimini yapabilmek için
+            return View("~/Views/Home/CalisanApi/Edit.cshtml", calisan);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Calisanid,AdSoyad,UzmanlikAlani,UygunlukSaatleri")] Calisan calisan)
+        public async Task<IActionResult> Edit(int id, [Bind("Calisanid,salonid,adsoyad,uzmanlıkalanı,uygunluksaatleri")] Calisan calisan)
         {
             if (id != calisan.Calisanid)
             {
-                return NotFound();  // ID uyumsuzsa hata döndür
+                return NotFound();
             }
 
             if (ModelState.IsValid)
@@ -127,13 +136,12 @@ namespace WebP.Controllers
                 }
                 return RedirectToAction(nameof(Calisan));  // Listeleme sayfasına yönlendir
             }
-            return View(calisan);  // Eğer hata varsa formu tekrar render et
+            return View(calisan);
         }
 
         private bool CalisanExists(int calisanid)
         {
-            throw new NotImplementedException();
+            return _context.Calisan.Any(e => e.Calisanid == calisanid);
         }
-
     }
 }

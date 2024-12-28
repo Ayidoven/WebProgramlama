@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebP.Models;
-
-public partial class Salon
+namespace WebP.Models
 {
-    public int salonid { get; set; }
+    public partial class Salon
+    {
+        public int salonid { get; set; }  // Salon ID'si
+        public string salonadı { get; set; } = null!;  // Salon adı
+        public string? adres { get; set; } // Salonun adresi (isteğe bağlı)
+        public string? Çalışmasaatleri { get; set; } // Salonun çalışma saatleri (isteğe bağlı)
+        public string? telefon { get; set; } // Salonun telefonu (isteğe bağlı)
 
-    public string salonadı { get; set; } = null!;
+        // Salona ait hizmetler
+        public virtual ICollection<Hizmet> Hizmet { get; set; } = new List<Hizmet>();
 
-    public string? adres { get; set; }
-
-    public string? çalışmasaatleri { get; set; }
-
-    public string? telefon { get; set; }
-
-    public virtual ICollection<Hizmet> Hizmet { get; set; } = new List<Hizmet>();
-
-    public virtual ICollection<Calisan> Calisan { get; set; } = new List<Calisan>();
+        // Salona ait çalışanlar
+        public virtual ICollection<Calisan> Calisan { get; set; } = new List<Calisan>();
+    }
 }

@@ -12,8 +12,8 @@ using WebP.Data;
 namespace WebP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241227193255_UpdateCalisanModel")]
-    partial class UpdateCalisanModel
+    [Migration("20241228133142_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,7 @@ namespace WebP.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "pg_catalog", "adminpack");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("WebP.Models.Calisan", b =>
+            modelBuilder.Entity("WebP.Models.Calisanlar", b =>
                 {
                     b.Property<int>("Calisanid")
                         .ValueGeneratedOnAdd()
@@ -164,7 +164,7 @@ namespace WebP.Migrations
                     b.ToTable("randevu", (string)null);
                 });
 
-            modelBuilder.Entity("WebP.Models.Salon", b =>
+            modelBuilder.Entity("WebP.Models.Salonlar", b =>
                 {
                     b.Property<int>("salonid")
                         .ValueGeneratedOnAdd()
@@ -189,7 +189,7 @@ namespace WebP.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("telefon");
 
-                    b.Property<string>("çalışmasaatleri")
+                    b.Property<string>("Çalışmasaatleri")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
@@ -199,9 +199,9 @@ namespace WebP.Migrations
                     b.ToTable("salon", (string)null);
                 });
 
-            modelBuilder.Entity("WebP.Models.Calisan", b =>
+            modelBuilder.Entity("WebP.Models.Calisanlar", b =>
                 {
-                    b.HasOne("WebP.Models.Salon", "Salon")
+                    b.HasOne("WebP.Models.Salonlar", "Salon")
                         .WithMany("Calisan")
                         .HasForeignKey("salonid")
                         .IsRequired()
@@ -212,18 +212,18 @@ namespace WebP.Migrations
 
             modelBuilder.Entity("WebP.Models.Hizmet", b =>
                 {
-                    b.HasOne("WebP.Models.Salon", "Salon")
+                    b.HasOne("WebP.Models.Salonlar", "salon")
                         .WithMany("Hizmet")
                         .HasForeignKey("Salonid")
                         .IsRequired()
                         .HasConstraintName("hizmet_salonid_fkey");
 
-                    b.Navigation("Salon");
+                    b.Navigation("salon");
                 });
 
             modelBuilder.Entity("WebP.Models.Randevu", b =>
                 {
-                    b.HasOne("WebP.Models.Calisan", "Calisan")
+                    b.HasOne("WebP.Models.Calisanlar", "Calisan")
                         .WithMany("Randevu")
                         .HasForeignKey("Calisanid")
                         .IsRequired()
@@ -240,7 +240,7 @@ namespace WebP.Migrations
                     b.Navigation("Hizmet");
                 });
 
-            modelBuilder.Entity("WebP.Models.Calisan", b =>
+            modelBuilder.Entity("WebP.Models.Calisanlar", b =>
                 {
                     b.Navigation("Randevu");
                 });
@@ -250,7 +250,7 @@ namespace WebP.Migrations
                     b.Navigation("Randevu");
                 });
 
-            modelBuilder.Entity("WebP.Models.Salon", b =>
+            modelBuilder.Entity("WebP.Models.Salonlar", b =>
                 {
                     b.Navigation("Calisan");
 
