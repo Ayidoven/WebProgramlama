@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebP.Models.Randevu>
+
+<h2>Randevu Listesi</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Çalışan</th>
+            <th>Müşteri Adı</th>
+            <th>Tarih ve Saat</th>
+            <th>Açıklama</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var randevu in Model)
+        {
+            <tr>
+                <td>@randevu.Calisanid</td>
+                <td>@randevu.Kullanıcıadı</td>
+                <td>@randevu.Tarih</td>
+                
+                <td>
+                    <a asp-action="Edit" asp-route-id="@randevu.Randevuid">Düzenle</a> |
+                    <a asp-action="Delete" asp-route-id="@randevu.Randevuid">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Yeni Randevu Ekle</a>

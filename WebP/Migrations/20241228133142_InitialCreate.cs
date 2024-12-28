@@ -47,7 +47,58 @@ namespace WebP.Migrations
                         principalColumn: "salonid",
                         onDelete: ReferentialAction.Cascade);
                 });
+            migrationBuilder.CreateTable(
+               name: "Randevu",
+               columns: table => new
+               {
+                   Randevuid = table.Column<int>(type: "int", nullable: false)
+                       .Annotation("SqlServer:Identity", "1, 1"),
+                   Calisanid = table.Column<int>(type: "int", nullable: false),
+                   Hizmetid = table.Column<int>(type: "int", nullable: false),
+                   Tarih = table.Column<DateTime>(type: "datetime2", nullable: false),
+                   Kullanıcıadı = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                   Durum = table.Column<string>(type: "nvarchar(max)", nullable: true)
+               },
+               constraints: table =>
+               {
+                   table.PrimaryKey("PK_Randevu", x => x.Randevuid);
+                   table.ForeignKey(
+                       name: "FK_Randevu_Calisan_Calisanid",
+                       column: x => x.Calisanid,
+                       principalTable: "Calisan",
+                       principalColumn: "Calisanid",
+                       onDelete: ReferentialAction.Cascade);
+                   table.ForeignKey(
+                       name: "FK_Randevu_Hizmet_Hizmetid",
+                       column: x => x.Hizmetid,
+                       principalTable: "Hizmet",
+                       principalColumn: "Hizmetid",
+                       onDelete: ReferentialAction.Cascade);
+               });
+
+            migrationBuilder.CreateTable(
+                name: "Hizmet",
+                columns: table => new
+                {
+                    Hizmetid = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Salonid = table.Column<int>(type: "int", nullable: false),
+                    Hizmetadı = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Süre = table.Column<int>(type: "int", nullable: false),
+                    Ücret = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hizmet", x => x.Hizmetid);
+                    table.ForeignKey(
+                        name: "FK_Hizmet_Salon_Salonid",
+                        column: x => x.Salonid,
+                        principalTable: "Salon",
+                        principalColumn: "Salonid",
+                        onDelete: ReferentialAction.Cascade);
+                });
         }
+           
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
@@ -56,6 +107,12 @@ namespace WebP.Migrations
 
             migrationBuilder.DropTable(
                 name: "Salon");
+           
+            migrationBuilder.DropTable(
+                name: "Randevu");
+
+            migrationBuilder.DropTable(
+                name: "Hizmet");
         }
     }
 }

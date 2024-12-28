@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebP.Models
 {
+    [Table("Salon")]
     public partial class Salon
     {
         public int salonid { get; set; }  // Salon ID'si

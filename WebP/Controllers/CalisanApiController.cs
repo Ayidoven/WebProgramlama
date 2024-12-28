@@ -6,6 +6,7 @@ using WebP.Models;
 
 namespace WebP.Controllers
 {
+
     [Route("CalisanApi/[action]/{id?}")]
     public class CalisanApiController : Controller
     {
@@ -19,42 +20,63 @@ namespace WebP.Controllers
         // GET: Çalışanlar (Listeleme)
         public async Task<IActionResult> Calisan()
         {
-            var calisanlar = await _context.Calisan
+            var calisan = await _context.Calisan
                 .Include(c => c.Salon)  // Salon bilgisini de dahil ediyoruz
                 .ToListAsync();
-            return View("~/Views/Home/CalisanApi/Calisan.cshtml", calisanlar);  // View'da çalışanları listeleyeceğiz
+            return View("~/Views/Home/CalisanApi/Calisan.cshtml", calisan);  // View'da çalışanları listeleyeceğiz
         }
 
-        // GET: Çalışan Ekleme
         public IActionResult Create()
         {
-            ViewBag.Salons = new SelectList(_context.Salon, "salonid", "salonadı"); // Dropdown için salon listesi
+            // Salon listesini dropdown için SelectList olarak ayarla
+            ViewBag.Salons = new SelectList(_context.Salon, "salonid", "salonadı");
             return View("~/Views/Home/CalisanApi/Create.cshtml");
         }
+
 
         // POST: Çalışan Ekleme
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("salonid,adsoyad,uzmanlıkalanı,uygunluksaatleri")] Calisan calisan)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var yeniCalisan = new Calisan
+                if (ModelState.IsValid)
                 {
-                    adsoyad = calisan.adsoyad,
-                    salonid = calisan.salonid,
-                    uzmanlıkalanı = calisan.uzmanlıkalanı,
-                    uygunluksaatleri = calisan.uygunluksaatleri
-                };
+                    var yeniCalisan = new Calisan
+                    {
+                        adsoyad = calisan.adsoyad,
+                        salonid = calisan.salonid,
+                        uzmanlıkalanı = calisan.uzmanlıkalanı,
+                        uygunluksaatleri = calisan.uygunluksaatleri
+                    };
 
-                _context.Calisan.Add(yeniCalisan);
-                await _context.SaveChangesAsync();
+                    // Yeni çalışanı veritabanına ekle
+                    _context.Calisan.Add(yeniCalisan);
+                    await _context.SaveChangesAsync();
 
-                return RedirectToAction("Calisan");
+                    // Başarıyla işlem tamamlandıysa yönlendirme yap
+                    return RedirectToAction("Calisan");
+                }
+
+                // Model geçerli değilse, salonlar listesi yeniden oluşturulup view'a dönülür
+                ViewBag.salon = new SelectList(_context.Salon, "salonid", "salonadı", calisan.salonid);
+                return View("~/Views/Home/CalisanApi/Create.cshtml", calisan);
             }
+            catch (Exception ex)
+            {
+                // Hata meydana gelirse, hatayı loglar ve kullanıcıya uygun bir mesaj gösterir
+                // Örneğin, bir log sistemi ile hata kaydedebilirsiniz.
+                // Loglama işlemi örneği (yazılımınıza uygun şekilde kullanabilirsiniz)
 
-            ViewBag.salonlar = new SelectList(_context.Salon, "salonid", "salonadı", calisan.salonid);
-            return View("~/Views/Home/CalisanApi/Create.cshtml", calisan);
+
+                // Hata mesajı eklenir ve kullanıcıya bildirilir
+                ModelState.AddModelError(string.Empty, "Bir hata oluştu. Lütfen tekrar deneyin.");
+
+                // View'a geri dönülür ve kullanıcıya hata mesajı gösterilir
+                ViewBag.salon = new SelectList(_context.Salon, "salonid", "salonadı", calisan.salonid);
+                return View("~/Views/Home/CalisanApi/Create.cshtml", calisan);
+            }
         }
 
         // GET: Çalışan Silme
