@@ -1,21 +1,44 @@
-﻿/* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+﻿/* Sayfa genel ayarları */
+body, html {
+    height: 100%;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
+/* Arka plan resmi ayarları */
+body {
+    background-image: url('/images/I_height.jpg'); /* Fotoğrafın yolu */
+    background-size: cover; /* Fotoğrafın tüm sayfayı kaplamasını sağlar */
+    background-position: center center; /* Fotoğrafı ortalar */
+    background-attachment: fixed; /* Sayfa kaydırıldığında fotoğraf sabit kalır */
+    color: white; /* Yazı rengini beyaz yapıyoruz, gerektiğinde değiştirilebilir */
+}
+
+/* Sayfanın üst kısmındaki alan */
 .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.text-center {
+    position: relative;
+    z-index: 2; /* İçeriği ön planda tutar */
     text-align: center;
+    padding-top: 150px; /* Üstten biraz boşluk */
 }
 
+/* Başlık ve metin stil ayarları */
+h1.display-4 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Başlığa gölge efekti */
+}
+
+a {
+    color: #ffcc00; /* Link rengini değiştiriyoruz */
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+/* Resmin tüm sayfayı kaplaması için stil ayarları */
 .welcome-img {
     max-width: 100%;
     height: auto;
@@ -23,16 +46,8 @@ body {
     margin-top: 20px;
 }
 
-h1.display-4 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+/* Diğer sayfa elemanları (sekme, buton, vb.) */
+.navbar, .footer {
+    position: relative;
+    z-index: 2; /* Bu elemanları da ön planda tutuyoruz */
 }
-
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-    a:hover {
-        text-decoration: underline;
-    }

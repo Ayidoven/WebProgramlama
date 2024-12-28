@@ -29,7 +29,7 @@ namespace WebP.Controllers
             {
                 _context.Add(kullanıcı); // Kullanıcı verisini veritabanına ekle
                 _context.SaveChanges(); // Değişiklikleri kaydet
-                return RedirectToAction("Success"); // Başarı sayfasına yönlendir
+                return RedirectToAction("Başarılı"); // Başarı sayfasına yönlendir
             }
 
             return View(kullanıcı); // Formda hata varsa tekrar formu göster
@@ -38,7 +38,7 @@ namespace WebP.Controllers
         // Kayıt Başarılı Sayfası
         public IActionResult Başarılı()
         {
-            return View();
+            return View("~/Views/Home/Index.cshtml");
         }
     }
 }
