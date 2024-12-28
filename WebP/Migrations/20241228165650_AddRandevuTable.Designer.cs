@@ -12,7 +12,7 @@ using WebP.Data;
 namespace WebP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241228145945_AddRandevuTable")]
+    [Migration("20241228165650_AddRandevuTable")]
     partial class AddRandevuTable
     {
         /// <inheritdoc />

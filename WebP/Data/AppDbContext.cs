@@ -15,7 +15,7 @@ public partial class AppDbContext : DbContext
         : base(options)
     {
     }
-    public DbSet<Kullanıcı> Kullanıcı { get; set; }
+    public virtual DbSet<Kullanıcı> Kullanıcı { get; set; }
     public virtual DbSet<Hizmet> Hizmet { get; set; }
 
     public virtual DbSet<Randevu> Randevu { get; set; }
