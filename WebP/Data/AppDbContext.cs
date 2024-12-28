@@ -45,7 +45,7 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Süre).HasColumnName("süre");
             entity.Property(e => e.Ücret).HasPrecision(10, 2);
 
-            entity.HasOne(d => d.Salon).WithMany(p => p.Hizmet)
+            entity.HasOne(d => d.salon).WithMany(p => p.Hizmet)
                 .HasForeignKey(d => d.Salonid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("hizmet_salonid_fkey");

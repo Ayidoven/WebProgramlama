@@ -7,7 +7,7 @@ public partial class Calisan
 {
     public int Calisanid { get; set; }
 
-    public int salonid { get; set; }
+    public int? salonid { get; set; }
 
     public string adsoyad { get; set; } = null!;
 

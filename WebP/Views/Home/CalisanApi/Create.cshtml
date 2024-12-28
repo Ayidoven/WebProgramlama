@@ -6,22 +6,18 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<form asp-action="Create" method=" post">
+<form asp-action="Create" method="post">
     <div class="form-group">
-        <label for="id">ID</label>
-        <input type="number" class="form-control" id="id" name="ID" required />
+        <label asp-for="adsoyad"></label>
+        <input asp-for="adsoyad" class="form-control" />
     </div>
     <div class="form-group">
-        <label for="adsoyad">Ad Soyad</label>
-        <input type="text" class="form-control" id="adsoyad" name="AdSoyad" required />
+        <label asp-for="uzmanlıkalanı"></label>
+        <input asp-for="uzmanlıkalanı" class="form-control" />
     </div>
     <div class="form-group">
-        <label for="uzmanlikalanı">Uzmanlık Alanı</label>
-        <input type="text" class="form-control" id="uzmanlikalanı" name="UzmanlikAlani" required />
-    </div>
-    <div class="form-group">
-        <label for="uygunluksaatleri">Uygunluk Saatleri</label>
-        <input type="datetime-local" class="form-control" id="uygunluksaatleri" name="UygunlukSaatleri" required />
+        <label asp-for="uygunluksaatleri"></label>
+        <input asp-for="uygunluksaatleri" class="form-control" type="datetime-local" />
     </div>
     <button type="submit" class="btn btn-primary">Çalışan Ekle</button>
 </form>

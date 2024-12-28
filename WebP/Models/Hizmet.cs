@@ -17,5 +17,5 @@ public partial class Hizmet
 
     public virtual ICollection<Randevu> Randevu { get; set; } = new List<Randevu>();
 
-    public virtual Salon Salon { get; set; } = null!;
+    public virtual Salon salon { get; set; } = null!;
 }
